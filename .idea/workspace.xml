@@ -10,13 +10,25 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1iT6esCBeJirwBYKAgRzkV8XWDb" />
   <component name="ProjectViewState">
@@ -29,10 +41,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="VAR" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git\web4_1\assets" />
+      <recent name="D:\Git\web4_1\js" />
+      <recent name="D:\Git\web4_1\css" />
       <recent name="D:\Git\web4_1" />
     </key>
   </component>
@@ -46,7 +63,8 @@
       <updated>1601919332598</updated>
       <workItem from="1601919333688" duration="8645000" />
       <workItem from="1601989046310" duration="9314000" />
-      <workItem from="1602057791331" duration="16428000" />
+      <workItem from="1602057791331" duration="18369000" />
+      <workItem from="1602155285960" duration="20404000" />
     </task>
     <servers />
   </component>
@@ -58,5 +76,9 @@
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
     <state x="1077" y="314" key="#Web_Browsers/0.0.2560.1050/-1280.140.1280.994@0.0.2560.1050" timestamp="1601919646931" />
+    <state x="141" y="173" key="SettingsEditor" timestamp="1602162522372">
+      <screen x="0" y="0" width="2560" height="1050" />
+    </state>
+    <state x="141" y="173" key="SettingsEditor/0.0.2560.1050/-1280.140.1280.994@0.0.2560.1050" timestamp="1602162522372" />
   </component>
 </project>
