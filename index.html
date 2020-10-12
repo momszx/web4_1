@@ -37,9 +37,7 @@
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-
-            </nav>
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"></nav>
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
                     <h3 class="text-dark mb-0">404 - Hetilap</h3></div>
@@ -109,6 +107,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 col-xl-12">
+                        <div class="card shadow border-left-danger ">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary font-weight-bold m-0">Cikkek Listálya </h6>
+                                <div class="card-text" style="padding: 20px">
+                                    <select class="form-control form-control-lg" id="mySelect" onchange="SelectChange()">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 col-xl-12">
+                        <div class="card shadow border-left-primary ">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary font-weight-bold m-0" id="result">Valószínűség: <span id="demo"></span></h6>
+                                <div class="card-text" style="padding: 20px">
+                                    <div class="slidecontainer">
+                                        <div class="col">
+                                            <input type="range" id="myRange" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <BR>
                 <div class="row">
                     <div class="col-lg-7 col-xl-8">
                         <div class="card shadow mb-4">
