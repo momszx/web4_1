@@ -110,11 +110,21 @@
                 <div class="row">
                     <div class="col-md-12 col-xl-12">
                         <div class="card shadow border-left-danger ">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary font-weight-bold m-0">Cikkek Listálya </h6>
-                                <div class="card-text" style="padding: 20px">
-                                    <select class="form-control form-control-lg" id="mySelect" onchange="SelectChange()">
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary font-weight-bold m-0" onload="slider()">Cikkek Listálya </h6>
+                                        <div class="card-text" style="padding: 20px">
+                                            <select class="form-control form-control-lg" id="mySelect" onchange="SelectChange()">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-check align-items-center" >
+                                        <input type="checkbox" class="form-check-input" id="Min3">
+                                        <label class="form-check-label" for="Min3">min.3</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +139,7 @@
                                 <div class="card-text" style="padding: 20px">
                                     <div class="slidecontainer">
                                         <div class="col">
-                                            <input type="range" id="myRange" style="min-width: 100%" />
+                                            <input type="range" class="custom-range" value="50" id="myRange" min="1" max="100" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -137,48 +147,65 @@
                         </div>
                     </div>
                 </div>
-                <BR>
-                <div class="row">
-                    <div class="col-lg-7 col-xl-8">
-                        <div class="card shadow mb-4">
+                <br>
+                <div class="row" >
+                    <div class="col">
+                        <div class="card shadow border-left-danger">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary font-weight-bold m-0">Cikk szövege</h6>
-                                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
-                                        <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a></div>
-                                </div>
+                                <h6 class="text-primary font-weight-bold m-0">Eredeti cimkék</h6>
                             </div>
-                            <div class="card-text" style="padding: 20px" id="cikk">
-                                
+                            <dl class="card-text" style="padding: 20px" id="Title">
+                            </dl>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="card shadow border-left-dark">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary font-weight-bold m-0">Ajánlott Cimkék</h6>
+                            </div>
+                            <div class="card-text" style="padding: 20px" id="RecomendedTitle">
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-xl-4">
+                    <div class="col">
+                        <div class="card shadow border-left-light">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary font-weight-bold m-0">Edetei cimkék (egyéb)</h6>
+                            </div>
+                            <div class="card-text" style="padding: 20px" id="OriginalTitle">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow border-left-secondary">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary font-weight-bold m-0">Ajánlott cimkék (egyéb)</h6>
+                            </div>
+                            <div class="card-text" style="padding: 20px" id="RecomendedTitleOther">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <BR>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
                         <div class="card shadow mb-4">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary font-weight-bold m-0">Revenue Sources</h6>
-                                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
-                                        <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a></div>
-                                </div>
+                                <h6 class="text-primary font-weight-bold m-0">Cikk szövege</h6>
                             </div>
-                            <div class="card-body">
-                                <div class="chart-area"><canvas data-bs-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
-                                <div
-                                    class="text-center small mt-4"><span class="mr-2"><i class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="mr-2"><i class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Refferal</span></div>
+                            <div class="card-text" style="padding: 20px" id="cikk">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="bg-white sticky-footer">
-        <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
-        </div>
-    </footer>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Donkó Márk 2020</span></div>
+            </div>
+        </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
     <script src="assets/js/jquery.min.js"></script>
 
