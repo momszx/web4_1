@@ -37,7 +37,7 @@
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"></nav>
+                <br>
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
                     <h3 class="text-dark mb-0">404 - Hetilap</h3></div>
@@ -111,19 +111,29 @@
                     <div class="col-md-12 col-xl-12">
                         <div class="card shadow border-left-danger ">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h6 class="text-primary font-weight-bold m-0" onload="slider()">Cikkek Listálya </h6>
-                                        <div class="card-text" style="padding: 20px">
-                                            <select class="form-control form-control-lg" id="mySelect" onchange="SelectChange()">
-                                            </select>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-check align-items-center" >
-                                        <input type="checkbox" class="form-check-input" id="Min3">
-                                        <label class="form-check-label" for="Min3">min.3</label>
+                                    <div class="card-text" style="padding: 20px">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                 <select class="form-control form-control-lg" id="mySelect" onchange="SelectChange()">
+                                                 </select>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: center;">
+                                                <button class="btn btn-secondary" type="button" onclick="addMinus20Element()"><<</button>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: center;">
+                                                <button class="btn btn-secondary" type="button" onclick="addMinus()"><</button>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: center;">
+                                                <button class="btn btn-secondary" type="button" onclick="addPlus()">></button>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: center;">
+                                                <button class="btn btn-secondary" type="button" onclick="addMinus20Element()">>></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,13 +146,10 @@
                         <div class="card shadow border-left-primary ">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0" id="result">Valószínűség: <span id="demo"></span></h6>
-                                <div class="card-text" style="padding: 20px">
-                                    <div class="slidecontainer">
-                                        <div class="col">
-                                            <input type="range" class="custom-range" value="50" id="myRange" min="1" max="100" style="min-width: 100%" />
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="card-text" style="padding: 20px">
+                                <input type="range" class="custom-range" value="50" id="myRange" min="1" max="100" style="min-width: 100%" />
+                                <span class="float" >Min 3: <input type="checkbox"> </span>
                             </div>
                         </div>
                     </div>

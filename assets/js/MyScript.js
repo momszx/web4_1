@@ -1,7 +1,8 @@
 let splitby$=[];
 let a=0;
 let i=0;
-let é=0;
+let distenceId=0;
+let distenceId2=0;
 function readFile(){
     jQuery.get('assets/data.txt',function (txt){
         let text = txt;
@@ -48,27 +49,18 @@ function readFile(){
 
     });
 }
-function openLook(splitby$){
+function openLook(){
     let help =splitby$[0][2][3];
     let help2 =help.split(" ");
     var x = document.getElementById("Title");
-
-
     //let rnd =Math.floor(Math.random(0,splitby$.length) * 100) + 1
     document.getElementById('cikk').innerHTML+=splitby$[0][4];
-
     document.getElementById("Title").innerHTML += "<div>"+ splitby$[0][2][0]+"</div>";
-    document.getElementById("Title").innerHTML += "<div>"+splitby$[0][2][1]+"</div>";
-    document.getElementById("Title").innerHTML += "<div>"+splitby$[0][2][2]+"</div>";
-    document.getElementById("Title").innerHTML += "<div>"+help2[0]+"</div>";
-
-
-
+    document.getElementById("Title").innerHTML += "<div>"+ splitby$[0][2][1]+"</div>";
+    document.getElementById("Title").innerHTML += "<div>"+ splitby$[0][2][2]+"</div>";
+    document.getElementById("Title").innerHTML += "<div>"+ help2[0]+"</div>";
     document.getElementById("OriginalTitle").innerHTML += "<div>"+help2[1]+"</div>";
     document.getElementById("OriginalTitle").innerHTML += "<div>"+help2[2]+"</div>";
-
-
-    document.getElementById("RecomendedTitleOther").innerHTML =splitby$[0][3][0];
 }
 //Ez írja ki a valószíbűséget
 function slider(){
@@ -85,33 +77,55 @@ function slider(){
 function plausibility(slider){
     let sliderValue=slider.value/100;
     let distence=splitby$[a+i][0][0][1]-sliderValue;
+    let distence2=splitby$[a+i][1][0][1]-sliderValue;
     let value;
-    for(t=0;t<splitby$[a+t][0].length;t++){
-        value=splitby$[a+i][0][t][1]-sliderValue;
+    let value2;
+    let valami=a+i;
+    if(valami>2000){
+        valami=valami-2000;
+    }
+    else if(valami<0){
+        valami=valami+2000;
+    }
+    for(t=0;t<splitby$[valami][0].length;t++){
+        value=splitby$[valami][0][t][1]-sliderValue;
+        value2=splitby$[valami][1][t][1]-sliderValue;
         if(value<0){
             value=-value;
         }
+        if(value2<0){
+            value2=-value2;
+        }
         if(distence>value){
             distence=value;
-            é=t;
+            distenceId=t;
+        }
+        if(distence2>value2){
+            distence2=value2;
+            distenceId2=t;
         }
     }
-    document.getElementById("RecomendedTitle").innerHTML = "<div>"+splitby$[0][1][é][0]+" "+splitby$[0][1][é][1]+"</div>";
-
+    document.getElementById("RecomendedTitle").innerHTML = "<div>"+splitby$[0][0][distenceId][0]+" "+splitby$[0][0][distenceId][1]+"</div>";
+    document.getElementById("RecomendedTitleOther").innerHTML = "<div>"+splitby$[0][1][distenceId][0]+" "+splitby$[0][1][distenceId][1]+"</div>";
 }
 
 //Ez adja hozzá az elemeket a Selectsonhöz
 function addOption(a){
     var x = document.getElementById("mySelect");
-
     for (d=a;d<a+20;d++) {
         var option = document.createElement("option");
-        if (d<2000){
+        console.log("a:"+a);
+        console.log("d:"+d);
+        if (0<d&&d<2000){
             option.text = splitby$[d][3];
             x.add(option);
         }
-        else {
+        else if(d>2000) {
             option.text=splitby$[d-2000][3];
+            x.add(option);
+        }
+        else  if(d<0){
+            option.text=splitby$[d+2000][3];
             x.add(option);
         }
     }
@@ -120,36 +134,77 @@ function addOption(a){
 function SelectChange() {
     var x = document.getElementById("mySelect");
      i = x.selectedIndex;
-    if ((a+i)<2000){
+    if ((a+i)<2000&&0<(a+i)){
+        let help= splitby$[a+i][2][splitby$[a+i][2].length-1]
+
+        help=help.toString();
+
+        let help2 =help.split(" ");
+        document.getElementById("Title").innerHTML = "<div>"+ splitby$[a+i][2][0]+"</div>";
+        for(q=1;q<splitby$[a+i][2].length-1;q++){
+            document.getElementById("Title").innerHTML += "<div>"+ splitby$[a+i][2][q]+"</div>";
+        }
+        document.getElementById("Title").innerHTML += "<div>"+ help2[0]+"</div>";
+        document.getElementById("OriginalTitle").innerHTML = "<div>"+ help2[1]+"</div>";
+        for(q=2;q<help2.length;q++){
+            document.getElementById("OriginalTitle").innerHTML += "<div>"+ help2[q]+"</div>";
+        }
         document.getElementById("cikk").innerHTML = splitby$[a+i][4];
-        document.getElementById("Title").innerHTML = splitby$[a+i][0][0][0];
-        document.getElementById("RecomendedTitle").innerHTML = splitby$[a+i][1][0];
-        document.getElementById("OriginalTitle").innerHTML = splitby$[a+i][2][0];
-        document.getElementById("RecomendedTitleOther").innerHTML =splitby$[a+i][3];
     }
-    else {
+    else if((a+i>2000)) {
+        let help= splitby$[(a+i)-2000][2][splitby$[(a+i)-2000][2].length-1];
+        help=help.toString();
+        let help2 =help.split(" ");
+        document.getElementById("Title").innerHTML = "<div>"+ splitby$[(a+i)-2000][2][0]+"</div>";
+        for(q=1;q<splitby$[(a+i)-2000][2].length-1;q++){
+            document.getElementById("Title").innerHTML += "<div>"+ splitby$[(a+i)-2000][2][q]+"</div>";
+        }
+        document.getElementById("Title").innerHTML += "<div>"+ help2[0]+"</div>";
+        document.getElementById("OriginalTitle").innerHTML = "<div>"+ help2[1]+"</div>";
+        for(q=2;q<help2.length;q++){
+            document.getElementById("OriginalTitle").innerHTML += "<div>"+ help2[q]+"</div>";
+        }
         document.getElementById("cikk").innerHTML = splitby$[(a+i)-2000][4];
+    }
+    else if((a+i)<0){
+        let help= splitby$[(a+i)+2000][2][splitby$[(a+i)+2000][2].length-1];
+        help=help.toString();
+        let help2 =help.split(" ");
+        document.getElementById("Title").innerHTML = "<div>"+ splitby$[(a+i)+2000][2][0]+"</div>";
+        for(q=1;q<splitby$[(a+i)+2000][2].length-1;q++){
+            document.getElementById("Title").innerHTML += "<div>"+ splitby$[(a+i)+2000][2][q]+"</div>";
+        }
+        document.getElementById("Title").innerHTML += "<div>"+ help2[0]+"</div>";
+        document.getElementById("OriginalTitle").innerHTML = "<div>"+ help2[1]+"</div>";
+        for(q=2;q<help2.length;q++){
+            document.getElementById("OriginalTitle").innerHTML += "<div>"+ help2[q]+"</div>";
+        }
+        document.getElementById("cikk").innerHTML = splitby$[(a+i)+2000][4];
     }
 }
 function addPlus(){
     a++;
     removeSelect();
     addOption(a)
+    SelectChange();
 }
 function addMinus(){
     a--;
     removeSelect();
     addOption(a)
+    SelectChange();
 }
 function addPlus20Element(){
     a+=20;
     removeSelect();
     addOption(a)
+    SelectChange();
 }
 function addMinus20Element(){
     a-=20;
     removeSelect();
     addOption(a)
+    SelectChange();
 }
 function removeSelect() {
     var x = document.getElementById("mySelect");
