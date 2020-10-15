@@ -3,6 +3,8 @@ let a=0;
 let i=0;
 let distenceId=0;
 let distenceId2=0;
+let output=0;
+let slider=0;
 function readFile(){
     jQuery.get('assets/data.txt',function (txt){
         let text = txt;
@@ -43,7 +45,7 @@ function readFile(){
                 splitby$[q][n]=splitByLabel;
             }
         }
-        slider();
+        slider_();
         openLook(splitby$)
         addOption(a)
 
@@ -63,50 +65,152 @@ function openLook(){
     document.getElementById("OriginalTitle").innerHTML += "<div>"+help2[2]+"</div>";
 }
 //Ez írja ki a valószíbűséget
-function slider(){
-    let slider = document.getElementById("myRange");
-    let output = document.getElementById("demo");
+function slider_(){
+    slider = document.getElementById("myRange");
+    output = document.getElementById("demo");
     output.innerHTML = slider.value/100;
 
     slider.oninput = function() {
         output.innerHTML = this.value/100;
-        plausibility(slider)
+        checkboxChecked()
     }
-    plausibility(slider)
+    checkboxChecked()
+}
+function checkboxChecked(){
+    var CheckBox = document.getElementById("checkbox").checked;
+    if (!CheckBox){
+        plausibility(slider);
+    }
+    else if(CheckBox){
+        plausibilityMin3(slider);
+    }
+}
+function plausibilityMin3(slider){
+    let sliderValue=slider.value/100;
+    let APlusI=(a+i);
+    if(0>APlusI){
+        APlusI=APlusI+2000;
+    }
+    else if(APlusI>2000){
+        APlusI=APlusI-2000
+    }
+    let sorter=splitby$[APlusI][0];
+    let sorter2=splitby$[APlusI][1];
+    sorter.sort(sortBysecondColum);
+    sorter2.sort(sortBysecondColum);
+    function sortBysecondColum(a,b){
+        if(a[1]===b[1]){
+            return 0;
+        }
+        else {
+            return (a[1]<b[1]) ? -1 : 1;
+        }
+    }
+    let nums=[];
+    let nums2=[];
+    let ArrayN;
+    let ArrayN2;
+    for(t=0;t<sorter.length;t++){
+        nums.push(sorter[t][1]);
+    }
+    for(t=0;t<sorter2.length;t++){
+        nums2.push(sorter2[t][1]);
+    }
+    let goal = sliderValue;
+    var closest = nums.reduce(function(prev, curr) {
+        return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+    });
+    var closest2 = nums2.reduce(function(prev, curr) {
+        return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+    });
+    for(t=0;t<sorter.length;t++){
+        if(sorter[t][1]==closest){
+            ArrayN=t;
+        }
+    }
+    for(t=0;t<sorter2.length;t++){
+        if(sorter2[t][1]==closest2){
+            ArrayN2=t;
+        }
+    }
+    if((ArrayN-1)>0){
+        document.getElementById("RecomendedTitle").innerHTML = "<div>"+sorter[ArrayN-1][0]+" "+sorter[ArrayN-1][1]+"</div>";
+    }
+    else {
+        document.getElementById("RecomendedTitle").innerHTML = "<div>"+"Nincs ilyen elem"+"</div>";
+    }
+    document.getElementById("RecomendedTitle").innerHTML += "<div>"+sorter[ArrayN][0]+" "+sorter[ArrayN][1]+"</div>";
+    if((ArrayN+1)<sorter.length){
+        document.getElementById("RecomendedTitle").innerHTML += "<div>"+sorter[ArrayN+1][0]+" "+sorter[ArrayN+1][1]+"</div>";
+    }
+    else {
+        document.getElementById("RecomendedTitle").innerHTML += "<div>"+"Nincs ilyen elem"+"</div>";
+    }
+    if((ArrayN2-1)>0){
+        document.getElementById("RecomendedTitleOther").innerHTML = "<div>"+sorter2[ArrayN2-1][0]+" "+sorter2[ArrayN2-1][1]+"</div>";
+    }
+    else {
+        document.getElementById("RecomendedTitleOther").innerHTML = "<div>"+"Nincs ilyen elem"+"</div>";
+    }
+    document.getElementById("RecomendedTitleOther").innerHTML += "<div>"+sorter2[ArrayN2][0]+" "+sorter2[ArrayN2][1]+"</div>";
+    if((ArrayN2+1)<sorter2.length){
+        document.getElementById("RecomendedTitleOther").innerHTML += "<div>"+sorter2[ArrayN2+1][0]+" "+sorter2[ArrayN2+1][1]+"</div>";
+    }
+    else {
+        document.getElementById("RecomendedTitleOther").innerHTML += "<div>"+"Nincs ilyen elem"+"</div>";
+    }
+
 }
 function plausibility(slider){
     let sliderValue=slider.value/100;
-    let distence=splitby$[a+i][0][0][1]-sliderValue;
-    let distence2=splitby$[a+i][1][0][1]-sliderValue;
-    let value;
-    let value2;
-    let valami=a+i;
-    if(valami>2000){
-        valami=valami-2000;
+    let APlusI=(a+i);
+    if(0>APlusI){
+        APlusI=APlusI+2000;
     }
-    else if(valami<0){
-        valami=valami+2000;
+    else if(APlusI>2000){
+        APlusI=APlusI-2000
     }
-    for(t=0;t<splitby$[valami][0].length;t++){
-        value=splitby$[valami][0][t][1]-sliderValue;
-        value2=splitby$[valami][1][t][1]-sliderValue;
-        if(value<0){
-            value=-value;
+    let sorter=splitby$[APlusI][0];
+    let sorter2=splitby$[APlusI][1];
+    sorter.sort(sortBysecondColum);
+    sorter2.sort(sortBysecondColum);
+    function sortBysecondColum(a,b){
+        if(a[1]===b[1]){
+            return 0;
         }
-        if(value2<0){
-            value2=-value2;
-        }
-        if(distence>value){
-            distence=value;
-            distenceId=t;
-        }
-        if(distence2>value2){
-            distence2=value2;
-            distenceId2=t;
+        else {
+            return (a[1]<b[1]) ? -1 : 1;
         }
     }
-    document.getElementById("RecomendedTitle").innerHTML = "<div>"+splitby$[0][0][distenceId][0]+" "+splitby$[0][0][distenceId][1]+"</div>";
-    document.getElementById("RecomendedTitleOther").innerHTML = "<div>"+splitby$[0][1][distenceId][0]+" "+splitby$[0][1][distenceId][1]+"</div>";
+    let nums=[];
+    let nums2=[];
+    let ArrayN;
+    let ArrayN2;
+    for(t=0;t<sorter.length;t++){
+        nums.push(sorter[t][1]);
+    }
+    for(t=0;t<sorter2.length;t++){
+        nums2.push(sorter2[t][1]);
+    }
+    let goal = sliderValue;
+    var closest = nums.reduce(function(prev, curr) {
+        return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+    });
+    var closest2 = nums2.reduce(function(prev, curr) {
+        return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+    });
+    for(t=0;t<sorter.length;t++){
+        if(sorter[t][1]==closest){
+            ArrayN=t;
+        }
+    }
+    for(t=0;t<sorter2.length;t++){
+        if(sorter2[t][1]==closest2){
+            ArrayN2=t;
+        }
+    }
+    document.getElementById("RecomendedTitle").innerHTML = "<div>"+sorter[ArrayN][0]+" "+sorter[ArrayN][1]+"</div>";
+    document.getElementById("RecomendedTitleOther").innerHTML = "<div>"+sorter2[ArrayN2][0]+" "+sorter2[ArrayN2][1]+"</div>";
 }
 
 //Ez adja hozzá az elemeket a Selectsonhöz
@@ -114,9 +218,7 @@ function addOption(a){
     var x = document.getElementById("mySelect");
     for (d=a;d<a+20;d++) {
         var option = document.createElement("option");
-        console.log("a:"+a);
-        console.log("d:"+d);
-        if (0<d&&d<2000){
+        if (0<=d&&d<2000){
             option.text = splitby$[d][3];
             x.add(option);
         }
@@ -136,9 +238,7 @@ function SelectChange() {
      i = x.selectedIndex;
     if ((a+i)<2000&&0<(a+i)){
         let help= splitby$[a+i][2][splitby$[a+i][2].length-1]
-
         help=help.toString();
-
         let help2 =help.split(" ");
         document.getElementById("Title").innerHTML = "<div>"+ splitby$[a+i][2][0]+"</div>";
         for(q=1;q<splitby$[a+i][2].length-1;q++){
@@ -181,6 +281,7 @@ function SelectChange() {
         }
         document.getElementById("cikk").innerHTML = splitby$[(a+i)+2000][4];
     }
+    checkboxChecked();
 }
 function addPlus(){
     a++;
@@ -208,7 +309,7 @@ function addMinus20Element(){
 }
 function removeSelect() {
     var x = document.getElementById("mySelect");
-    for (i=0;i<20;i++){
-        x.options.remove(i);
+    for (u=0;u<20;u++){
+        x.options.remove(0);
     }
 }

@@ -53,6 +53,16 @@
       <recent name="D:\Git\web4_1" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="MyScript.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/assets/js/MyScript.js" working-dir="$PROJECT_DIR$/assets/js">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.MyScript.js" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +78,8 @@
       <workItem from="1602233737714" duration="213000" />
       <workItem from="1602518622046" duration="12211000" />
       <workItem from="1602594338178" duration="20504000" />
-      <workItem from="1602692215715" duration="15629000" />
+      <workItem from="1602692215715" duration="15781000" />
+      <workItem from="1602755145738" duration="18694000" />
     </task>
     <servers />
   </component>
